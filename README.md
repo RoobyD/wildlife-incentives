@@ -1,5 +1,3 @@
-# wildlife-incentives
-
 # Wildlife Conservation Platform
 
 A data-driven platform supporting wildlife conservation on private lands.
@@ -34,12 +32,10 @@ The Wildlife Conservation Platform is a web application designed to help landown
 1. Start the frontend development server: `npm run dev` (or `yarn dev`)
 2. Start the backend development server: `python app.py` (or your backend start command)
 
-## Copyright (c) [Year] [Your Names]
+## Copyright (c) 2025 Miles Brandl, Vanderbilt Boyce, Rooby Dartiny
 
 All rights reserved. This project is intended for educational purposes as part of [Your Course/Program Name] at [Your University].  Use of this code for non-commercial educational purposes is permitted. Commercial use is prohibited without explicit permission from the authors.
 
 ## Contact
 
-Miles Brandl
-Vanderbilt Boyce 
-Rooby Dartiny
+Miles Brandl, Vanderbilt Boyce, Rooby Dartiny
