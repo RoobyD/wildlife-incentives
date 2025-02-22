@@ -34,7 +34,7 @@ The Wildlife Conservation Platform is a web application designed to help landown
 
 ## Copyright (c) 2025 Miles Brandl, Vanderbilt Boyce, Rooby Dartiny
 
-All rights reserved. This project is intended for educational purposes as part of [Your Course/Program Name] at [Your University].  Use of this code for non-commercial educational purposes is permitted. Commercial use is prohibited without explicit permission from the authors.
+All rights reserved. This project is intended for educational purposes as part of a hackathon(2025) at The College Of New Jersey.  Use of this code for non-commercial educational purposes is permitted. Commercial use is prohibited without explicit permission from the authors.
 
 ## Contact
 
