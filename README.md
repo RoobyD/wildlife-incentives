@@ -19,8 +19,7 @@ The program effectively turns wildlife presence from a potential challenge into 
 ## Tech Stack
 
 * Frontend: React, Next.js
-* Backend: Python (Flask/Django - specify which framework)
-* Database: PostgreSQL (or specify which database)
+* Backend: JavaScript 
 
 ## Getting Started
 
@@ -28,12 +27,12 @@ The program effectively turns wildlife presence from a potential challenge into 
 2. Navigate to the frontend directory: `cd frontend`
 3. Install frontend dependencies: `npm install` (or `yarn install`)
 4. Navigate to the backend directory: `cd backend`
-5. Install backend dependencies: `pip install -r requirements.txt` (after setting up a virtual environment - highly recommended)
+6. Install backend dependencies: `pip install -r requirements.txt` (after setting up a virtual environment - highly recommended)
 
 ## Development
 
 1. Start the frontend development server: `npm run dev` (or `yarn dev`)
-2. Start the backend development server: `python app.py` (or your backend start command)
+2. Start the backend development server: `node index.js`
 
 ## Copyright (c) 2025 Miles Brandl, Vanderbilt Boyce, Rooby Dartiny, Aidan Stoner
 
@@ -41,4 +40,4 @@ All rights reserved. This project is intended for educational purposes as part o
 
 ## Contact
 
-Miles Brandl, Vanderbilt Boyce, Rooby Dartiny, Aidan Stoner
+brandlm1@tcnj.edu boycev1@tcnj.edu dartinr1@tcnj.edu stonera3@tcnj.edu
