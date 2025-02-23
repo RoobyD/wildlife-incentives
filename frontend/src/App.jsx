@@ -2,10 +2,10 @@ import { useState } from 'react'
 import background from './background.jpg'
 import submission_service from './services/submission_service'
 
-
 import React from 'react';
 
 const ResultsPage = ({ formData, recommendations }) => {
+  // Destructure the submitted form data
   const { 
     county, 
     acres, 
@@ -28,8 +28,8 @@ const ResultsPage = ({ formData, recommendations }) => {
   };
 
   // Calculate total potential profit
-  const totalProtectionProfit = recommendations.protection?.protection_profit || 15000;
-  const fencingProfit = recommendations.fencing?.fencingprofit || 5590;
+  const totalProtectionProfit = recommendations.protection.protection_profit || 0;
+  const fencingProfit = recommendations.fencing.fencingprofit || 0;
   const totalPotentialProfit = totalProtectionProfit + fencingProfit;
 
   return (
@@ -57,12 +57,16 @@ const ResultsPage = ({ formData, recommendations }) => {
               </p>
             </div>
             <div className="bg-white p-4 rounded-md shadow-sm">
-              <h3 className="text-lg font-semibold text-blue-700">Property Size</h3>
-              <p className="text-xl">{acres} acres</p>
+              <h3 className="text-lg font-semibold text-blue-700">Protection Incentives</h3>
+              <p className="text-xl text-blue-800">
+                {formatCurrency(totalProtectionProfit)}
+              </p>
             </div>
             <div className="bg-white p-4 rounded-md shadow-sm">
-              <h3 className="text-lg font-semibold text-blue-700">Current Farming Type</h3>
-              <p className="text-xl">{farming}</p>
+              <h3 className="text-lg font-semibold text-blue-700">Fencing Innovations</h3>
+              <p className="text-xl text-blue-800">
+                {formatCurrency(fencingProfit)}
+              </p>
             </div>
           </div>
         </div>
@@ -80,7 +84,7 @@ const ResultsPage = ({ formData, recommendations }) => {
             <div className="space-y-4">
               <p className="text-lg text-gray-700">
                 Based on your property's location and characteristics, we've identified opportunities 
-                to support and protect key wildlife species, including:
+                to support and protect key wildlife species:
               </p>
               <ul className="list-disc list-inside text-xl text-green-700 font-medium">
                 {recommendations.protection?.protected_species?.map((species, index) => (
@@ -118,8 +122,8 @@ const ResultsPage = ({ formData, recommendations }) => {
                 ))}
               </ul>
               <p className="text-lg text-gray-700 mt-4">
-                These recommendations could generate up to {formatCurrency(fencingProfit)} 
-                in additional revenue while improving wildlife movement and habitat connectivity.
+                These recommendations could generate up to {formatCurrency(fencingProfit)} in 
+                additional revenue while improving wildlife movement and habitat connectivity.
               </p>
             </div>
           </div>
@@ -137,16 +141,27 @@ const ResultsPage = ({ formData, recommendations }) => {
             </h3>
             <div className="space-y-4">
               <p className="text-lg text-gray-700">
-                You've reported interactions with the following wildlife:
+                Wildlife Interactions and Observations:
               </p>
-              <ul className="list-disc list-inside text-xl text-purple-700 font-medium">
-                {plagueAnimals.map((animal, index) => (
-                  <li key={index}>{animal}</li>
-                ))}
-              </ul>
+              <div className="space-y-2">
+                {recommendations.camera && recommendations.camera.length > 0 && (
+                  <p className="text-lg text-purple-700">
+                    Camera Captures: {recommendations.camera.join(', ')}
+                  </p>
+                )}
+                {recommendations.peace && recommendations.peace.length > 0 && (
+                  <p className="text-lg text-purple-700">
+                    Compliance Status: {recommendations.peace.join(', ')}
+                  </p>
+                )}
+                {plagueAnimals && plagueAnimals.length > 0 && (
+                  <p className="text-lg text-purple-700">
+                    Reported Wildlife Interactions: {plagueAnimals.join(', ')}
+                  </p>
+                )}
+              </div>
               <p className="text-lg text-gray-700 mt-4">
-                Your current annual wildlife-related maintenance cost is ${maintenanceCost}. 
-                Our program can help offset these expenses while promoting coexistence.
+                Your property plays a crucial role in local wildlife conservation efforts.
               </p>
             </div>
           </div>
@@ -170,7 +185,7 @@ const ResultsPage = ({ formData, recommendations }) => {
             </button>
             <button 
               className="bg-green-600 text-white py-3 px-6 rounded-md hover:bg-green-700 transition-colors font-medium"
-              onClick={() => {/* Add contact or next step action */}}
+              onClick={() => { window.location.href = "https://americanprairie.org/project/wild-sky/" }}
             >
               Connect with a Representative
             </button>
@@ -446,9 +461,9 @@ function App() {
   const [fencingRepairs, setFencingRepairs] = useState("")
   const [alternativeFencing, setAlternativeFencing] = useState(1)
   
-  
   const [showResults, setShowResults] = useState(false);
-  const [formData, setFormData] = useState(null);
+  const [recommendations, setRecommendations] = useState(null);
+  const [formData, setFormData] = useState(null)
 
   const values = {
     county: { value: county, setValue: setCounty },
@@ -469,9 +484,11 @@ function App() {
 
     submission_service.submit_form(county, acres, farming, plagueAnimals, problems, deterrents, maintenanceCost, trailCams, fencingStrategy, fencingRepairs, alternativeFencing)
       .then(res => {
+        console.log(res)
         if (res.success) {
-          setFormData(res.recommendations)
+          setRecommendations(res.recommendations)
           setShowResults(true)
+          setFormData({county, acres, farming, plagueAnimals, problems, deterrents, maintenanceCost, trailCams, fencingStrategy, fencingRepairs, alternativeFencing})
         }
         else {
           console.log(res.message)
@@ -494,7 +511,7 @@ function App() {
         <Navigation />
         <HeroSection />
         {!showResults && <Form values={values} handleSubmit={handleSubmit} />}
-        {showResults && <ResultsPage formData={formData} />}
+        {showResults && <ResultsPage formData={formData} recommendations={recommendations} />}
 
       </div>
     </div>
