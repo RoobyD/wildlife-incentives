@@ -305,9 +305,12 @@ function App() {
       <div className="relative z-10">
         <Navigation />
         <HeroSection />
-        <Form values={values} handleSubmit={handleSubmit} />
+        {!showResults && <Form values={values} handleSubmit={handleSubmit} />}
+        {showResults && <Results formData={formData} />}
+
       </div>
     </div>
+    
   )
 }
 
