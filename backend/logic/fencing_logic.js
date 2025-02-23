@@ -1,12 +1,20 @@
 function recommendedFencing(currentFence, openness, acerage) {
     let recommendations = [];
-    acres = acerage;
+    const acres = acerage;
 
-    const sqmiles = (acres / 640)
-    const milesfencing = (Math.sqrt(sqmiles) * 4)
-    fencingprofit = (milesfencing * 250)
+    const sqmiles = (acres / 640);
+    const milesfencing = (Math.sqrt(sqmiles) * 4);
+    let fencingprofit = (milesfencing * 250);
 
-    if (currentFence === "barbed_wire") {
+    const fenceTypeMap = {
+        "Traditional Barbed Wire": "barbed_wire",
+        "Electric Fencing": "electric",
+        "Wildlife Friendly Fencing": "wildlife_friendly_barbed"
+    };
+
+    const mappedFenceType = fenceTypeMap[currentFence] || currentFence;
+
+    if (mappedFenceType === "barbed_wire") {
         if (openness === 5) {
             recommendations = ["virtual_fencing", "smooth_wire"];
         } else if (openness === 4) {
@@ -16,7 +24,7 @@ function recommendedFencing(currentFence, openness, acerage) {
         } else if (openness <= 2) {
             recommendations = ["wildlife_friendly_barbed"];
         }
-    } else if (currentFence === "electric") {
+    } else if (mappedFenceType === "electric") {
         if (openness >= 4) {
             recommendations = ["virtual_fencing", "smooth_wire"];
         } else if (openness === 3) {
@@ -24,7 +32,7 @@ function recommendedFencing(currentFence, openness, acerage) {
         } else {
             recommendations = ["wildlife_friendly_barbed"];
         }
-    } else if (currentFence === "wildlife_friendly_barbed") {
+    } else if (mappedFenceType === "wildlife_friendly_barbed") {
         if (openness >= 3) {
             recommendations = ["virtual_fencing", "smooth_wire"];
         } else {
@@ -32,12 +40,12 @@ function recommendedFencing(currentFence, openness, acerage) {
         }
     }
 
-    output = {
+    let output = {
         recommendations,
         fencingprofit
-    }
+    };
 
     return output;
- }
- 
- module.exports = recommendedFencing
+}
+
+module.exports = recommendedFencing;

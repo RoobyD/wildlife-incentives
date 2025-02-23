@@ -265,7 +265,11 @@ function App() {
   const [trailCams, setTrailCams] = useState(false)
   const [fencingStrategy, setFencingStrategy] = useState("")
   const [fencingRepairs, setFencingRepairs] = useState("")
-  const [alternativeFencing, setAlternativeFencing] = useState("")
+  const [alternativeFencing, setAlternativeFencing] = useState(1)
+  
+  
+  const [showResults, setShowResults] = useState(false);
+  const [formData, setFormData] = useState(null);
 
   const values = {
     county: { value: county, setValue: setCounty },
@@ -288,6 +292,7 @@ function App() {
   }
 
   return (
+    
     <div className="relative min-h-screen">
       {/* Background image container */}
       <div 
