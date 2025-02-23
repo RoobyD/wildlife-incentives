@@ -289,6 +289,15 @@ function App() {
     event.preventDefault()
 
     submission_service.submit_form(county, acres, farming, plagueAnimals, problems, deterrents, maintenanceCost, trailCams, fencingStrategy, fencingRepairs, alternativeFencing)
+      .then(res => {
+        if (res.success) {
+          setFormData(res.recommendations)
+          setShowResults(true)
+        }
+        else {
+          console.log(res.message)
+        }
+      })
   }
 
   return (
