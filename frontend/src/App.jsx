@@ -6,6 +6,7 @@ const Title = ({ title }) => {
   )
 }
 
+// TO DO: need labels for form, clean up form styling, and options
 const Form = ({ values, handleSubmit }) => {
   return (
     <>
