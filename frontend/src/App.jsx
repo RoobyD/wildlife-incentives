@@ -14,18 +14,31 @@ const HeroSection = () => (
   <div className="relative h-96 text-white">
     <div className="absolute inset-0 bg-black/40"></div>
     <div className="relative z-10 max-w-7xl mx-auto pt-20 px-4">
-      <h1 className="text-6xl font-serif mb-6">Wildlife Incentives Program</h1>
+      <h1 className="text-6xl font-serif mb-6">Wild Sky Financial Estimate For Farmers
+      </h1>
       <p className="text-xl max-w-2xl">
-        Supporting ranchers and landowners in creating a wildlife-friendly environment 
-        while maintaining sustainable agricultural practices.
+      A web-based tool designed to enhance the accessibility and transparency 
+      of the Wild Sky program for ranchers participating in wildlife conservation efforts. 
+      This application aims to streamline the process of understanding 
+      program benefits, requirements, and expectations for potential participants.
       </p>
     </div>
   </div>
 )
 
 const Form = ({ values, handleSubmit }) => {
-  const counties = ["Beaverhead", "Valley", "McCone", "Blaine"]
-  const farmingTypes = ["Cattle Ranching", "Sheep Ranching", "Mixed Livestock", "Crop Farming", "Mixed Use"]
+  const counties = [
+    "Beaverhead", "Big Horn", "Blaine", "Broadwater", "Carbon", "Carter",
+    "Cascade", "Chouteau", "Custer", "Daniels", "Dawson", "Deer Lodge",
+    "Fallon", "Fergus", "Flathead", "Gallatin", "Garfield", "Glacier",
+    "Golden Valley", "Granite", "Hill", "Jefferson", "Judith Basin", "Lake",
+    "Lewis and Clark", "Liberty", "Lincoln", "Madison", "McCone", "Meagher",
+    "Mineral", "Missoula", "Musselshell", "Park", "Petroleum", "Phillips",
+    "Pondera", "Powder River", "Powell", "Prairie", "Ravalli", "Richland",
+    "Roosevelt", "Rosebud", "Sanders", "Sheridan", "Silver Bow", "Stillwater",
+    "Sweet Grass", "Teton", "Toole", "Treasure", "Valley", "Wheatland",
+    "Wibaux", "Yellowstone"]
+    const farmingTypes = ["Cattle Ranching", "Sheep Ranching", "Mixed Livestock", "Crop Farming", "Mixed Use"]
   const fencingTypes = ["Traditional Barbed Wire", "Electric Fencing", "Woven Wire", "Split Rail"]
   const alternativeFencingOptions = ["Wildlife Friendly Fencing", "Virtual Fencing", "Seasonal Fencing", "None"]
 
@@ -44,17 +57,20 @@ const Form = ({ values, handleSubmit }) => {
               <label htmlFor="county" className="block text-sm font-medium text-gray-700">
                 Which county is your property located in?
               </label>
-              <select 
+              <input
+                type="text"
+                list="counties"
                 id="county"
                 className="mt-1 block w-full rounded-md border border-gray-300 p-2 bg-white"
                 value={values.county.value}
                 onChange={(event) => values.county.setValue(event.target.value)}
-              >
-                <option value="">Select a county</option>
+                placeholder="Type to search counties..."
+              />
+              <datalist id="counties">
                 {counties.map(county => (
                   <option key={county} value={county}>{county}</option>
                 ))}
-              </select>
+              </datalist>
             </div>
 
             <div>
@@ -153,7 +169,7 @@ const Form = ({ values, handleSubmit }) => {
               onChange={(event) => values.trailCams.setValue(event.target.checked)}
             />
             <label htmlFor="trailCams" className="ml-2 text-gray-700">
-              Would you be interested in participating in our trail camera program for additional incentives?
+            Do you currently utilize trail cameras on your property? 
             </label>
           </div>
         </div>
@@ -183,34 +199,25 @@ const Form = ({ values, handleSubmit }) => {
             </div>
 
             <div>
-              <label htmlFor="fencingRepairs" className="block text-sm font-medium text-gray-700">
-                How many miles of fencing do you maintain?
+              <label htmlFor="alternativeFencing" className="block text-sm font-medium text-gray-700">
+                How open are you to alternative fencing solutions? (1-5)
               </label>
               <input
-                id="fencingRepairs"
                 type="number"
-                className="mt-1 block w-full rounded-md border border-gray-300 p-2 bg-white"
-                value={values.fencingRepairs.value}
-                onChange={(event) => values.fencingRepairs.setValue(event.target.value)}
-                placeholder="Enter miles of fencing"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="alternativeFencing" className="block text-sm font-medium text-gray-700">
-                Would you be interested in any of these wildlife-friendly fencing alternatives?
-              </label>
-              <select
                 id="alternativeFencing"
+                min="1"
+                max="5"
                 className="mt-1 block w-full rounded-md border border-gray-300 p-2 bg-white"
                 value={values.alternativeFencing.value}
-                onChange={(event) => values.alternativeFencing.setValue(event.target.value)}
-              >
-                <option value="">Select alternative fencing option</option>
-                {alternativeFencingOptions.map(type => (
-                  <option key={type} value={type}>{type}</option>
-                ))}
-              </select>
+                onChange={(event) => {
+                  const value = Math.min(Math.max(parseInt(event.target.value) || 1, 1), 5);
+                  values.alternativeFencing.setValue(value);
+                }}
+                placeholder="Input"
+              />
+              <span className="text-xs text-gray-500 mt-1">
+                1 = Not Likely, 5 = Very Likely
+              </span>
             </div>
           </div>
         </div>
