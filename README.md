@@ -32,7 +32,7 @@ The Wildlife Conservation Platform is a web application designed to help landown
 1. Start the frontend development server: `npm run dev` (or `yarn dev`)
 2. Start the backend development server: `python app.py` (or your backend start command)
 
-## Copyright (c) 2025 Miles Brandl, Vanderbilt Boyce, Rooby Dartiny
+## Copyright (c) 2025 Miles Brandl, Vanderbilt Boyce, Rooby Dartiny, Aidan Stoner
 
 All rights reserved. This project is intended for educational purposes as part of a hackathon(2025) at The College Of New Jersey.  Use of this code for non-commercial educational purposes is permitted. Commercial use is prohibited without explicit permission from the authors.
 
