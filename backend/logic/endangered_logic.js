@@ -1,5 +1,4 @@
-function recommend_protection(county, acreage) {
-
+function recommend_protection(county, acerage) {
 
 
 
