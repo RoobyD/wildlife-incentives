@@ -1,9 +1,9 @@
-function recommendFencing(currentFence, openness, acerage) {
+function recommendedFencing(currentFence, openness, acerage) {
     let recommendations = [];
     acres = acerage;
 
-    const sqrtmiles = (sqrt(acres / 640) )
-    const milesfencing = (Math.sqrt(sqrtmiles) * 4)
+    const sqmiles = (acres / 640)
+    const milesfencing = (Math.sqrt(sqmiles) * 4)
     fencingprofit = (milesfencing * 250)
 
     if (currentFence === "barbed_wire") {
@@ -31,8 +31,13 @@ function recommendFencing(currentFence, openness, acerage) {
             recommendations = ["smooth_wire"];
         }
     }
-    
-    return{recommendations, fencingprofit};
+
+    output = {
+        recommendations,
+        fencingprofit
+    }
+
+    return output;
  }
  
- export default recommendFencing;
+ module.exports = recommendedFencing

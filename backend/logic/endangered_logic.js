@@ -1,7 +1,7 @@
 function recommendProtection(county, acreage) {
 
-protection_profit = 0;
-let protected_species = [];
+    protection_profit = 0;
+    let protected_species = [];
 
     if (county === "Valley" || county === "Hill" || county === "Blaine" || county === "Phillips"){
     protection_profit = acreage * 0.75
@@ -17,10 +17,12 @@ let protected_species = [];
     protection_profit = acreage * 0.75
     protected_species = ["Black Footed Ferrets"];
     }
-}
-    return {
+
+    output = {
         protection_profit,
         protected_species
-    };
+    }
+    return output;
+}
 
-export default recommendProtection;
+module.exports = recommendProtection;

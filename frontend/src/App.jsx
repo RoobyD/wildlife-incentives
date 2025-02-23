@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import submission_service from './services/submission_service'
+
 const Navigation = () => (
   <nav className="bg-blue-800 text-white p-4 relative z-10">
     <div className="max-w-7xl mx-auto">
@@ -253,19 +255,8 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log('Form submitted:', {
-      county,
-      acres,
-      farming,
-      plagueAnimals,
-      problems,
-      deterrents,
-      maintenanceCost,
-      trailCams,
-      fencingStrategy,
-      fencingRepairs,
-      alternativeFencing
-    })
+
+    submission_service.submit_form(county, acres, farming, plagueAnimals, problems, deterrents, maintenanceCost, trailCams, fencingStrategy, fencingRepairs, alternativeFencing)
   }
 
   return (

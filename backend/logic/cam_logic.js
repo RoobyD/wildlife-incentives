@@ -1,4 +1,4 @@
-function recomendedCam(county){
+function recommendedCam(county){
     let camRecs = [];
 
     //Swift Fox
@@ -33,4 +33,4 @@ function recomendedCam(county){
     return camRecs;
 }
 
-export default recomendedCam;
+module.exports = recommendedCam
