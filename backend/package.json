@@ -11,7 +11,8 @@
   },
   "scripts": {
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ui": "cd ../frontend && npm run build && move dist ../backend"
   },
   "author": "",
   "license": "ISC",
