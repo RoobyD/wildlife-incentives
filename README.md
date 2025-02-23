@@ -4,7 +4,10 @@ A data-driven platform supporting wildlife conservation on private lands.
 
 ## Overview
 
-The Wildlife Conservation Platform is a web application designed to help landowners and conservationists manage wildlife conservation efforts.  It aims to streamline data collection, analysis, and program management to improve the effectiveness of conservation initiatives.
+
+American Prairie is a nonprofit organization working to create the largest nature reserve in the contiguous United States in northeastern Montana. Their Wild Sky program is an innovative initiative that provides financial incentives to ranchers who help protect wildlife on their land. Ranchers can earn payments for documented wildlife presence (like trail camera photos), maintaining healthy grasslands for herbivores, and using wildlife-friendly ranching practices such as non-lethal predator deterrents and modified fencing that allows wildlife movement.
+
+The program effectively turns wildlife presence from a potential challenge into an asset for ranchers, helping nurture the revival of prairie diversity, connecting critical reserve areas while mutually supporting local ranching operations. It's a win-win approach that helps preserve native species and their habitats while providing economic benefits to the ranching community.
 
 ## Key Features
 
