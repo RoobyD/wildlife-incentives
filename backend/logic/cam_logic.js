@@ -30,4 +30,7 @@ function recomendedCam(county){
     if(county === "Powder River" || county === "Big Horn" || county === "Blaine" || county === "Phillips" || county === "Rosebud" || county === "Custer"){
         camRecs = ["Prairie Dog"];
     }
+    return camRecs;
 }
+
+export default recomendedCam;

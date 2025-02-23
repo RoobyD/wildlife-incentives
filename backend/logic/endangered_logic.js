@@ -7,17 +7,15 @@ let protected_species = [];
     protection_profit = acreage * 0.75
     protected_species = ["Swift fox"];
     }
-    else if (county === "Valley" || county === "Hill" || county === "Blaine" || county === "Phillips"){
+
+    if (county === "Petroleum" || county === "Fergus" || county === "Beaverhead" || county === "Rosebud" || county === "Garfield" || county ==="Phillips" || county === "Carter" || county === "Valley" || county === "Carbon"){
         protection_profit = acreage * 0.75
-        protected_species = ["Swift fox"];
+        protected_species = ["Large Sage Grouse"];
     }
-    if (county === "Valley" || county === "Hill" || county === "Blaine" || county === "Phillips"){
+
+    if (county === "Phillips"){
     protection_profit = acreage * 0.75
-    protected_species = ["Swift fox"];
-    }
-    if (county === "Valley" || county === "Hill" || county === "Blaine" || county === "Phillips"){
-        protection_profit = acreage * 0.75
-        protected_species = ["Swift fox"];
+    protected_species = ["Black Footed Ferrets"];
     }
 }
     return {

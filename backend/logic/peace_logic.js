@@ -9,4 +9,7 @@ function recomendedPeace(acerage, nonLethalDeterant){
         deterantRecs = ["notComply"];
     }
 
+    return deterantRecs;
 }
+
+export default recomendedPeace;
