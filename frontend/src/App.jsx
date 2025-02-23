@@ -2,6 +2,185 @@ import { useState } from 'react'
 import background from './background.jpg'
 import submission_service from './services/submission_service'
 
+
+import React from 'react';
+
+const ResultsPage = ({ formData, recommendations }) => {
+  const { 
+    county, 
+    acres, 
+    farming, 
+    plagueAnimals, 
+    maintenanceCost, 
+    trailCams, 
+    fencingStrategy,
+    alternativeFencing 
+  } = formData;
+
+  // Helper function to format currency
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(amount);
+  };
+
+  // Calculate total potential profit
+  const totalProtectionProfit = recommendations.protection?.protection_profit || 15000;
+  const fencingProfit = recommendations.fencing?.fencingprofit || 5590;
+  const totalPotentialProfit = totalProtectionProfit + fencingProfit;
+
+  return (
+    <div className="bg-white/90 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto space-y-12">
+        <div className="text-center">
+          <h1 className="text-4xl font-serif text-blue-800 mb-4">
+            Your Wild Sky Financial Estimate
+          </h1>
+          <p className="text-xl text-gray-600">
+            Tailored Incentives for {county} County Ranchers
+          </p>
+        </div>
+
+        {/* Summary Section */}
+        <div className="bg-blue-50 rounded-lg p-8 shadow-md">
+          <h2 className="text-2xl font-serif text-blue-800 mb-6">
+            Financial Opportunity Summary
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white p-4 rounded-md shadow-sm">
+              <h3 className="text-lg font-semibold text-blue-700">Total Potential Incentives</h3>
+              <p className="text-2xl font-bold text-green-600">
+                {formatCurrency(totalPotentialProfit)}
+              </p>
+            </div>
+            <div className="bg-white p-4 rounded-md shadow-sm">
+              <h3 className="text-lg font-semibold text-blue-700">Property Size</h3>
+              <p className="text-xl">{acres} acres</p>
+            </div>
+            <div className="bg-white p-4 rounded-md shadow-sm">
+              <h3 className="text-lg font-semibold text-blue-700">Current Farming Type</h3>
+              <p className="text-xl">{farming}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Wildlife Protection Incentives */}
+        <div className="space-y-6">
+          <h2 className="text-3xl font-serif text-blue-800 border-b pb-3">
+            Wildlife Protection Opportunities
+          </h2>
+          
+          <div className="bg-green-50 p-6 rounded-lg">
+            <h3 className="text-2xl font-semibold text-green-800 mb-4">
+              Protected Species Identification
+            </h3>
+            <div className="space-y-4">
+              <p className="text-lg text-gray-700">
+                Based on your property's location and characteristics, we've identified opportunities 
+                to support and protect key wildlife species, including:
+              </p>
+              <ul className="list-disc list-inside text-xl text-green-700 font-medium">
+                {recommendations.protection?.protected_species?.map((species, index) => (
+                  <li key={index}>{species}</li>
+                ))}
+              </ul>
+              <p className="text-lg text-gray-700 mt-4">
+                By maintaining habitats and implementing wildlife-friendly practices, 
+                you could earn up to {formatCurrency(totalProtectionProfit)} in incentives.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Fencing Recommendations */}
+        <div className="space-y-6">
+          <h2 className="text-3xl font-serif text-blue-800 border-b pb-3">
+            Fencing Innovation Recommendations
+          </h2>
+          
+          <div className="bg-yellow-50 p-6 rounded-lg">
+            <h3 className="text-2xl font-semibold text-yellow-800 mb-4">
+              Modernize Your Fencing Strategy
+            </h3>
+            <div className="space-y-4">
+              <p className="text-lg text-gray-700">
+                Your current fencing strategy ({fencingStrategy}) presents an opportunity 
+                for innovation. We recommend:
+              </p>
+              <ul className="list-disc list-inside text-xl text-yellow-700 font-medium">
+                {recommendations.fencing?.recommendations?.map((recommendation, index) => (
+                  <li key={index} className="capitalize">
+                    {recommendation.replace('_', ' ')}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-lg text-gray-700 mt-4">
+                These recommendations could generate up to {formatCurrency(fencingProfit)} 
+                in additional revenue while improving wildlife movement and habitat connectivity.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Wildlife Interaction Insights */}
+        <div className="space-y-6">
+          <h2 className="text-3xl font-serif text-blue-800 border-b pb-3">
+            Wildlife Interaction Insights
+          </h2>
+          
+          <div className="bg-purple-50 p-6 rounded-lg">
+            <h3 className="text-2xl font-semibold text-purple-800 mb-4">
+              Understanding Your Ecosystem
+            </h3>
+            <div className="space-y-4">
+              <p className="text-lg text-gray-700">
+                You've reported interactions with the following wildlife:
+              </p>
+              <ul className="list-disc list-inside text-xl text-purple-700 font-medium">
+                {plagueAnimals.map((animal, index) => (
+                  <li key={index}>{animal}</li>
+                ))}
+              </ul>
+              <p className="text-lg text-gray-700 mt-4">
+                Your current annual wildlife-related maintenance cost is ${maintenanceCost}. 
+                Our program can help offset these expenses while promoting coexistence.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Next Steps */}
+        <div className="bg-blue-100 p-8 rounded-lg text-center">
+          <h2 className="text-3xl font-serif text-blue-800 mb-6">
+            Your Path Forward
+          </h2>
+          <p className="text-xl text-gray-700 mb-6">
+            Wild Sky is committed to supporting ranchers like you in creating a sustainable 
+            future that balances agricultural productivity with wildlife conservation.
+          </p>
+          <div className="flex justify-center space-x-4">
+            <button 
+              className="bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition-colors font-medium"
+              onClick={() => window.location.reload()}
+            >
+              Recalculate
+            </button>
+            <button 
+              className="bg-green-600 text-white py-3 px-6 rounded-md hover:bg-green-700 transition-colors font-medium"
+              onClick={() => {/* Add contact or next step action */}}
+            >
+              Connect with a Representative
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Navigation = () => (
   <nav className="bg-blue-800 text-white p-4 relative z-10">
     <div className="max-w-7xl mx-auto">
