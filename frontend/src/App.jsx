@@ -6,53 +6,65 @@ const Title = ({ title }) => {
   )
 }
 
-const Form = ({ values, handleSubmit, handleChange }) => {
+const Form = ({ values, handleSubmit }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <select onChange={values.county.value}>
-          <option defaultChecked></option>
-        </select>
-
-        <input onChange={values.acres.value}>
-          {/* acres */}
-        </input>
-
-        <select onChange={values.farming.value}>
-          {/* farming */}
-        </select>
-
-        <input type="checkbox" onChange={values.plagueAnimals.value}>
-          {/* plagueAnimals */}
-        </input>
-
-        <input type="checkbox" onChange={values.problems.value}>
-          {/* problems */}
-        </input>
-
-        <input type="checkbox" onChange={values.deterrents.value}>
-          {/* deterrents */}
-        </input>
-
-        <input onChange={values.maintenanceCost.value}>
-          {/* maintenanceCost */}
-        </input>
-
-        <input type="checkbox" onChange={values.trailCams.value}>
-          {/* trailCams */}
-        </input>
-
-        <select onChange={values.fencingStrategy.value}>
-          {/* fencingStrategy */}
-        </select>
-
-        <input onChange={values.fencingRepairs.value}>
-          {/* fencingRepairs */}
-        </input>
-
-        <select onChange={values.alternativeFencing.value}>
-          {/* alternativeFencing */}
-        </select>
+        <div>
+          <select className="bg-white m-4 rounded-sm" value={values.county.value} onChange={(event) => values.county.setValue(event.target.value)}>
+            <option value="Beaverhead" defaultChecked></option>
+          </select>
+        </div>
+        <div>
+          <input className="bg-white m-4 rounded-sm" value={values.acres.value} onChange={(event) => values.acres.setValue(event.target.value)}>
+        
+          </input>
+        </div>
+        <div>
+          <select className="bg-white m-4 rounded-sm" value={values.farming.value} onChange={(event) => values.farming.setValue(event.target.value)}>
+            {/* farming */}
+          </select>
+        </div>
+        <div>
+          <input className="bg-white m-4 rounded-sm" type="checkbox" value={values.plagueAnimals.value} onChange={(event) => values.plagueAnimals.setValue(event.target.value)}>
+            {/* plagueAnimals */}
+          </input>
+        </div>
+        <div>
+          <input className="bg-white m-4 rounded-sm" type="checkbox" value={values.problems.value} onChange={(event) => values.problems.setValue(event.target.value)}>
+            {/* problems */}
+          </input>
+        </div>
+        <div>
+          <input className="bg-white m-4 rounded-sm" type="checkbox" value={values.deterrents.value} onChange={(event) => values.deterrents.setValue(event.target.value)}>
+            {/* deterrents */}
+          </input>
+        </div>
+        <div>
+          <input className="bg-white m-4 rounded-sm" value={values.maintenanceCost.value} onChange={(event) => values.maintenanceCost.setValue(event.target.value)} type="number">
+            {/* maintenanceCost */}
+          </input>
+        </div>
+        <div>
+          <input className="bg-white m-4 rounded-sm" type="checkbox" value={values.trailCams.value} onChange={(event) => values.trailCams.setValue(event.target.value)} >
+            {/* trailCams */}
+          </input>
+        </div>
+        <div>
+          <select className="bg-white m-4 rounded-sm" value={values.fencingStrategy.value} onChange={(event) => values.fencingStrategy.setValue(event.target.value)}>
+            {/* fencingStrategy */}
+          </select>
+        </div>
+        <div>
+          <input className="bg-white m-4 rounded-sm" value={values.fencingRepairs.value} onChange={(event) => values.fencingRepairs.setValue(event.target.value)} type="number">
+            {/* fencingRepairs */}
+          </input>
+        </div>
+        <div>
+          <select className="bg-white m-4 rounded-sm" value={values.alternativeFencing.value} onChange={(event) => values.alternativeFencing.setValue(event.target.value)}>
+            {/* alternativeFencing */}
+          </select>
+        </div>
       </form>
     </>
   )
@@ -140,7 +152,7 @@ function App() {
   return (
     <div className='bg-blue-800 h-screen'>
       <Title title="Welcome to the Wildlife Incentives Board" />
-      <Form values={values} handleSubmit={handleSubmit} handleChange={setValues}  />
+      <Form values={values} handleSubmit={handleSubmit}  />
     </div>
   )
 }
