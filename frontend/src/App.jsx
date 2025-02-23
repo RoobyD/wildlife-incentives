@@ -32,6 +32,23 @@ const ResultsPage = ({ formData, recommendations }) => {
   const fencingProfit = recommendations.fencing.fencingprofit || 0;
   const totalPotentialProfit = totalProtectionProfit + fencingProfit;
 
+  const fencingDescriptions = {
+    virtual_fencing: "Virtual fencing uses GPS-enabled collars to guide cattle without permanent infrastructure, keeping landscapes untouched. It delivers gentle audio cues and minimal shocks, allowing wildlife to move freely while keeping livestock exactly where they need to be.",
+    wildlife_friendly_barbed: "A practical compromise between ranching needs and wildlife protection by adjusting traditional wire placement. The modified design reduces entanglement risks by raising the bottom wire and lowering the top wire, making it safer for passing animals.", 
+    barbed_wire: "Creates multiple hazards for wildlife, with closely spaced wires that fragment habitats and increase injury risks. Low bottom wires and high top strands turn the landscape into an obstacle course for migrating animals. ", 
+    smooth_wire: "A wildlife-friendly design that creates safe passages for different animal species with strategically spaced wires. The smooth surface and carefully planned height allows animals like pronghorn to pass underneath and deer to jump over with minimal risk.", 
+    electric: "Electric fencing creates a learning experience for animals through mild electrical deterrents that discourage direct contact. Animals quickly learn to avoid the fence, providing an effective barrier with minimal physical interaction.",
+  }
+
+  const fencingNames = {
+    virtual_fencing: "Virtual Fencing",
+    wildlife_friendly_barbed: "Wildlife Friendly Barbed", 
+    barbed_wire: "Barbed Wire", 
+    smooth_wire: "Smooth Wire",
+    electric: "Electric Fencing"
+
+  }
+
   return (
     <div className="bg-white/90 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto space-y-12">
@@ -116,8 +133,11 @@ const ResultsPage = ({ formData, recommendations }) => {
               </p>
               <ul className="list-disc list-inside text-xl text-yellow-700 font-medium">
                 {recommendations.fencing?.recommendations?.map((recommendation, index) => (
-                  <li key={index} className="capitalize">
-                    {recommendation.replace('_', ' ')}
+                  <li key={index}>
+                    {fencingNames[recommendation]}
+                    <br/>
+                    {fencingDescriptions[recommendation]}
+                    <br/>
                   </li>
                 ))}
               </ul>
