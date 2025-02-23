@@ -53,25 +53,22 @@ const Form = ({ values, handleSubmit }) => {
           </h3>
           
           <div className="space-y-4">
-            <div>
-              <label htmlFor="county" className="block text-sm font-medium text-gray-700">
-                Which county is your property located in?
-              </label>
-              <input
-                type="text"
-                list="counties"
-                id="county"
-                className="mt-1 block w-full rounded-md border border-gray-300 p-2 bg-white"
-                value={values.county.value}
-                onChange={(event) => values.county.setValue(event.target.value)}
-                placeholder="Type to search counties..."
-              />
-              <datalist id="counties">
-                {counties.map(county => (
-                  <option key={county} value={county}>{county}</option>
-                ))}
-              </datalist>
-            </div>
+          <div>
+            <label htmlFor="county" className="block text-sm font-medium text-gray-700">
+              Which county is your property located in?
+            </label>
+            <select
+              id="county"
+              className="mt-1 block w-full rounded-md border border-gray-300 p-2 bg-white"
+              value={values.county.value}
+              onChange={(event) => values.county.setValue(event.target.value)}
+            >
+              <option value="">Select a county</option>
+              {counties.map(county => (
+                <option key={county} value={county}>{county}</option>
+              ))}
+            </select>
+          </div>
 
             <div>
               <label htmlFor="acres" className="block text-sm font-medium text-gray-700">
@@ -208,12 +205,19 @@ const Form = ({ values, handleSubmit }) => {
                 min="1"
                 max="5"
                 className="mt-1 block w-full rounded-md border border-gray-300 p-2 bg-white"
-                value={values.alternativeFencing.value}
+                value={values.alternativeFencing.value || ''}
                 onChange={(event) => {
-                  const value = Math.min(Math.max(parseInt(event.target.value) || 1, 1), 5);
-                  values.alternativeFencing.setValue(value);
-                }}
-                placeholder="Input"
+                  const inputValue = event.target.value;
+                  if (inputValue === '') {
+                    values.alternativeFencing.setValue('');
+                  } else {
+                    const value = Math.min(Math.max(parseInt(inputValue), 1), 5);
+                    if (!isNaN(value)) {
+                      values.alternativeFencing.setValue(value);
+                    }
+                  }
+                }
+              }
               />
               <span className="text-xs text-gray-500 mt-1">
                 1 = Not Likely, 5 = Very Likely
@@ -272,7 +276,7 @@ function App() {
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/background.jpg')"
+          backgroundImage: '/background.jpg'
         }}
       ></div>
       
