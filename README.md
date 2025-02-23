@@ -38,4 +38,4 @@ All rights reserved. This project is intended for educational purposes as part o
 
 ## Contact
 
-Miles Brandl, Vanderbilt Boyce, Rooby Dartiny
+Miles Brandl, Vanderbilt Boyce, Rooby Dartiny, Aidan Stoner
