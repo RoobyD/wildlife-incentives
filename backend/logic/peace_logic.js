@@ -6,7 +6,7 @@ function recomendedPeace(acerage, nonLethalDeterant){
         deterantRecs = ["Comply"];
     }
     else{
-        deterantRecs = [notComply];
+        deterantRecs = ["notComply"];
     }
-    
+
 }
