@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import background from './background.jpg'
 import submission_service from './services/submission_service'
 
 const Navigation = () => (
@@ -11,17 +11,34 @@ const Navigation = () => (
 )
 
 const HeroSection = () => (
-  <div className="relative h-96 text-white">
-    <div className="absolute inset-0 bg-black/40"></div>
-    <div className="relative z-10 max-w-7xl mx-auto pt-20 px-4">
-      <h1 className="text-6xl font-serif mb-6">Wild Sky Financial Estimate For Farmers
+  <div className="relative h-screen text-white">
+    <div 
+      className="absolute inset-0 bg-cover bg-center"
+      style={{ backgroundImage: "url('/background.jpg')" }}
+    ></div>
+    <div className="absolute inset-0 bg-black/50"></div>
+    <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-12 flex flex-col justify-center h-full"> {/* Changed py-24 to pt-24 pb-12 */}
+      <h1 className="text-5xl md:text-6xl font-serif mb-8">
+        Wild Sky Financial Estimate For Ranchers
       </h1>
-      <p className="text-xl max-w-2xl">
-      A web-based tool designed to enhance the accessibility and transparency 
-      of the Wild Sky program for ranchers participating in wildlife conservation efforts. 
-      This application aims to streamline the process of understanding 
-      program benefits, requirements, and expectations for potential participants.
-      </p>
+      <div className="space-y-4 max-w-4xl"> {/* Changed space-y-6 to space-y-4 */}
+        <p className="text-lg md:text-xl">
+          American Prairie is a nonprofit organization working to create the largest nature reserve 
+          in the contiguous United States in northeastern Montana. Their Wild Sky program is an 
+          innovative initiative that provides financial incentives to ranchers who help protect 
+          wildlife on their land. Ranchers can earn payments for documented wildlife presence 
+          (like trail camera photos), maintaining healthy grasslands for herbivores, and using 
+          wildlife-friendly ranching practices such as non-lethal predator deterrents and modified 
+          fencing that allows wildlife movement.
+        </p>
+        <p className="text-lg">
+          The program effectively turns wildlife presence from a potential challenge into an asset 
+          for ranchers, helping nurture the revival of prairie diversity, connecting 
+          critical reserve areas while mutually supporting local ranching operations. It's 
+          a win-win approach that helps preserve native species and their habitats while providing 
+          economic benefits to the ranching community.
+        </p>
+      </div>
     </div>
   </div>
 )
@@ -39,12 +56,12 @@ const Form = ({ values, handleSubmit }) => {
     "Sweet Grass", "Teton", "Toole", "Treasure", "Valley", "Wheatland",
     "Wibaux", "Yellowstone"]
     const farmingTypes = ["Cattle Ranching", "Sheep Ranching", "Mixed Livestock", "Crop Farming", "Mixed Use"]
-  const fencingTypes = ["Traditional Barbed Wire", "Electric Fencing", "Woven Wire", "Split Rail"]
+  const fencingTypes = ["Wildlife-Friendly Modified Barbed Wire", "Traditional Barbed Wire", "Smooth Wire Fencing", "Electric Fencing", "Virtual Fencing"]
   const alternativeFencingOptions = ["Wildlife Friendly Fencing", "Virtual Fencing", "Seasonal Fencing", "None"]
 
   return (
     <div className="max-w-3xl mx-auto bg-white/90 rounded-lg shadow-xl p-8 my-12">
-      <h2 className="text-3xl font-serif text-blue-800 mb-8">Calculate Your Potential Benefits</h2>
+      <h2 className="text-3xl font-serif text-blue-800 mb-8">See if you qualify for our incentives program</h2>
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* General Information Section */}
         <div className="space-y-6">
@@ -220,7 +237,7 @@ const Form = ({ values, handleSubmit }) => {
               }
               />
               <span className="text-xs text-gray-500 mt-1">
-                1 = Not Likely, 5 = Very Likely
+                1 = Not Interested, 5 = Very Interested
               </span>
             </div>
           </div>
@@ -275,9 +292,8 @@ function App() {
       {/* Background image container */}
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: '/background.jpg'
-        }}
+        style={{ backgroundImage: `url(${background})` }}
+
       ></div>
       
       {/* Content container */}
