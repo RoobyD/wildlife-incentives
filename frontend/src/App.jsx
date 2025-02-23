@@ -494,7 +494,7 @@ function App() {
         <Navigation />
         <HeroSection />
         {!showResults && <Form values={values} handleSubmit={handleSubmit} />}
-        {showResults && <Results formData={formData} />}
+        {showResults && <ResultsPage formData={formData} />}
 
       </div>
     </div>
